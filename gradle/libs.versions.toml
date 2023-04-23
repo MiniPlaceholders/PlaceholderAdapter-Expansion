@@ -14,12 +14,9 @@ adventure = "4.13.1"
 
 [libraries]
 
-velocity-api = { group = "com.velocitypowered", name = "velocity-api", version.ref = "velocity" }
 paper-api = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper" }
 miniplaceholders = { group = "io.github.miniplaceholders", name = "miniplaceholders-api", version.ref = "miniplaceholders" }
-
-adventure-api = { group = "net.kyori", name = "adventure-api", version.ref = "adventure" }
-adventure-minimessage = { group = "net.kyori", name = "adventure-text-minimessage", version.ref = "adventure" }
+placeholderapi = { group = "me.clip", name = "placeholderapi", version = "2.11.3" }
 
 [plugins]
 

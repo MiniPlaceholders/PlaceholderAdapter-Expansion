@@ -4,22 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(projects.exampleExpansionVelocity)
-    implementation(projects.exampleExpansionPaper)
-}
-
-subprojects {
-    apply<JavaPlugin>()
-    repositories {
-        maven("https://papermc.io/repo/repository/maven-public/")
-    }
-    java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-    tasks {
-        compileJava {
-            options.encoding = Charsets.UTF_8.name()
-            options.release.set(17)
-        }
-    }
+    implementation(project(":placeholderapi-expansion-paper"))
 }
 
 tasks {

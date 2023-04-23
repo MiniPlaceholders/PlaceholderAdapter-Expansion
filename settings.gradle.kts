@@ -1,14 +1,14 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "Example-Expansion"
+rootProject.name = "PlaceholderAPI-Expansion"
 
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.4.0"
 }
 
-arrayOf("common", "paper", "velocity").forEach {
-    include("example-expansion-$it")
+arrayOf("paper").forEach {
+    include("placeholderapi-expansion-$it")
 
-    project(":example-expansion-$it").projectDir = file(it)
+    project(":placeholderapi-expansion-$it").projectDir = file(it)
 }
 
