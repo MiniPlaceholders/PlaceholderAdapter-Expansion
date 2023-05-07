@@ -22,3 +22,10 @@ Its operation would be similar to running the `/papi parse me (placeholders)` co
 
 This placeholder requires two online players to work.
 The functioning of this placeholder depends on whether the plugin in which it is used has relational placeholder support
+
+If you want to nest the result of the placeholder inside another placeholder, add the string argument.
+For example: `<placeholderapi_player:%player_name%:string>`
+
+## Downloads
+
+[![](https://raw.githubusercontent.com/Prospector/badges/master/modrinth-badge-72h-padded.png)](https://modrinth.com/plugin/miniplaceholders-placeholderapi-expansion)
