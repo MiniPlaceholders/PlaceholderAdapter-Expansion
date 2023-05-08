@@ -5,6 +5,12 @@ PlaceholderAPI Expansion for MiniPlaceholders
 
 - Paper
 - Folia
+- Velocity
+
+### If you are using Velocity
+
+In order to use PlaceholderAPI placeholders with MiniPlaceholders Velocity,
+you must install [PAPIProxyBridge](https://modrinth.com/plugin/papiproxybridge) according to its installation guide
 
 ## Placeholders
 
