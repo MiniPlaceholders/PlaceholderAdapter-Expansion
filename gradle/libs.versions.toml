@@ -14,9 +14,11 @@ adventure = "4.13.1"
 
 [libraries]
 
+velocity-api = { group = "com.velocitypowered", name = "velocity-api", version.ref = "velocity" }
 paper-api = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper" }
 miniplaceholders = { group = "io.github.miniplaceholders", name = "miniplaceholders-api", version.ref = "miniplaceholders" }
 placeholderapi = { group = "me.clip", name = "placeholderapi", version = "2.11.3" }
+proxybridge = "net.william278:PAPIProxyBridge:1.2"
 
 [plugins]
 

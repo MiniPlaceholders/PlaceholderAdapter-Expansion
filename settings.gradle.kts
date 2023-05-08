@@ -6,7 +6,7 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
 
-arrayOf("paper").forEach {
+arrayOf("paper", "velocity").forEach {
     include("placeholderapi-expansion-$it")
 
     project(":placeholderapi-expansion-$it").projectDir = file(it)
