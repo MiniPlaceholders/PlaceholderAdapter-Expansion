@@ -14,6 +14,7 @@ import net.william278.papiproxybridge.api.PlaceholderAPI;
 import org.slf4j.Logger;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 import static net.kyori.adventure.text.minimessage.MiniMessage.miniMessage;
 import static net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.AMPERSAND_CHAR;
@@ -42,10 +43,11 @@ public final class VelocityPlugin {
                 .filter(Player.class)
                 .globalPlaceholder("global", (queue, ctx) -> {
                     final String argument = queue.popOr("You need to provide a placeholder").value();
-                    final String papiParsed = PlaceholderAPI.getInstance().formatPlaceholders(
-                            argument,
-                            NULL_UUID
-                    ).getNow(argument).replace(SECTION_CHAR, AMPERSAND_CHAR);
+                    final String papiParsed = PlaceholderAPI.getInstance()
+                            .formatPlaceholders(argument, NULL_UUID)
+                            .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
+                            .join()
+                            .replace(SECTION_CHAR, AMPERSAND_CHAR);
 
                     if (parseString(queue)) {
                         return Tag.preProcessParsed(miniMessage().serialize(LegacyUtils.parsePossibleLegacy(papiParsed)));
@@ -56,10 +58,11 @@ public final class VelocityPlugin {
                 .audiencePlaceholder("player", (aud, queue, ctx) -> {
                     final String argument = queue.popOr("You need to provide a placeholder").value();
                     final Player player = (Player)aud;
-                    final String papiParsed = PlaceholderAPI.getInstance().formatPlaceholders(
-                            argument,
-                            player.getUniqueId()
-                    ).getNow(argument).replace(SECTION_CHAR, AMPERSAND_CHAR);
+                    final String papiParsed = PlaceholderAPI.getInstance()
+                            .formatPlaceholders(argument, player.getUniqueId())
+                            .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
+                            .join()
+                            .replace(SECTION_CHAR, AMPERSAND_CHAR);
 
                     if (parseString(queue)) {
                         return Tag.preProcessParsed(miniMessage().serialize(LegacyUtils.parsePossibleLegacy(papiParsed)));
@@ -71,11 +74,11 @@ public final class VelocityPlugin {
                     final String argument = queue.popOr("You need to provide a placeholder").value();
                     final Player player = (Player) audience;
                     final Player toShow = (Player) audienceToShow;
-                    final String papiParsed = PlaceholderAPI.getInstance().formatPlaceholders(
-                            argument,
-                            player.getUniqueId(),
-                            toShow.getUniqueId()
-                    ).getNow(argument).replace(SECTION_CHAR, AMPERSAND_CHAR);
+                    final String papiParsed = PlaceholderAPI.getInstance()
+                            .formatPlaceholders(argument, player.getUniqueId(), toShow.getUniqueId())
+                            .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
+                            .join()
+                            .replace(SECTION_CHAR, AMPERSAND_CHAR);
 
                     if (parseString(queue)) {
                         return Tag.preProcessParsed(miniMessage().serialize(LegacyUtils.parsePossibleLegacy(papiParsed)));
