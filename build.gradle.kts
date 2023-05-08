@@ -4,7 +4,8 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":placeholderapi-expansion-paper"))
+    implementation(projects.placeholderapiExpansionPaper)
+    implementation(projects.placeholderapiExpansionVelocity)
 }
 
 tasks {
