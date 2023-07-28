@@ -6,6 +6,7 @@ plugins {
 repositories {
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://jitpack.io")
+    maven("https://repo.william278.net/releases/")
 }
 
 dependencies {
