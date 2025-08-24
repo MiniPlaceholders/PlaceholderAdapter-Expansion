@@ -22,8 +22,7 @@ public final class AdapterExpansionProvider implements ExpansionProvider {
     public LoadRequirement loadRequirement() {
         return LoadRequirement.allOf(
                 LoadRequirement.platform(Platform.PAPER, Platform.VELOCITY),
-                LoadRequirement.requiredComplement("placeholderapi", "PlaceholderAPI"),
-                LoadRequirement.requiredComplement("papiproxybridge")
+                LoadRequirement.requiredComplement("placeholderapi", "PlaceholderAPI", "papiproxybridge")
         );
     }
 }
