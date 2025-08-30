@@ -53,7 +53,3 @@ If you want to nest the result of the placeholder inside another placeholder, ad
 For example:
 - `<placeholder-adapter_papi_player:%player_name%:string>`
 - `<placeholder-adapter_player:%player_name%:string:30000>`
-
-## Downloads
-
-[![](https://raw.githubusercontent.com/Prospector/badges/master/modrinth-badge-72h-padded.png)](https://modrinth.com/plugin/miniplaceholders-placeholderapi-expansion)
