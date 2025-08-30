@@ -1,7 +1,7 @@
 # PlaceholderAdapter-Expansion
 PlaceholderAdapter Expansion for MiniPlaceholders
 
-This extension provides support for multiple placeholder plugins so that they can be used in MiniPlaceholders
+This expansion provides support for multiple placeholder plugins so that they can be used in MiniPlaceholders
 
 ## Supported Placeholder Providers
 
