@@ -1,6 +1,5 @@
 package io.github.miniplaceholders.expansion.placeholderadapter.velocity;
 
-import com.google.common.collect.Maps;
 import com.velocitypowered.api.proxy.Player;
 import io.github.miniplaceholders.api.Expansion;
 import io.github.miniplaceholders.api.utils.LegacyStrings;
@@ -10,6 +9,7 @@ import net.william278.papiproxybridge.api.PlaceholderAPI;
 
 import java.util.OptionalInt;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 
@@ -20,17 +20,17 @@ import static net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializ
 public final class VelocityPlatform {
     private static final UUID NULL_UUID = UUID.randomUUID();
     private static final PlaceholderAPI instance = PlaceholderAPI.createInstance();
-    private static final ConcurrentMap<Long, PlaceholderAPI> cachedInstances = Maps.newConcurrentMap();
+    private static final ConcurrentMap<Long, PlaceholderAPI> cachedInstances = new ConcurrentHashMap<>();
 
     private static PlaceholderAPI getAPI(ArgumentQueue queue) {
         if (!queue.hasNext()) return instance;
-        OptionalInt optExpiry = queue.pop().asInt();
+        final OptionalInt optExpiry = queue.pop().asInt();
 
         if (optExpiry.isEmpty()) return instance;
-        Long expiry = (long) optExpiry.getAsInt();
+        final long expiry = optExpiry.getAsInt();
 
         return cachedInstances.computeIfAbsent(expiry, (key) -> {
-            PlaceholderAPI api = PlaceholderAPI.createInstance();
+            final PlaceholderAPI api = PlaceholderAPI.createInstance();
             api.setCacheExpiry(key);
             return api;
         });
@@ -40,13 +40,14 @@ public final class VelocityPlatform {
         return Expansion.builder("placeholder-adapter")
                 .globalPlaceholder("global", (queue, ctx) -> {
                     final String argument = queue.popOr("You need to provide a placeholder").value();
-                    boolean isString = parseString(queue);
-                    PlaceholderAPI api = getAPI(queue);
+                    final boolean isString = parseString(queue);
+                    final PlaceholderAPI api = getAPI(queue);
                     final String papiParsed = api
                             .formatPlaceholders(argument, NULL_UUID)
                             .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
-                            .join()
-                            .replace(SECTION_CHAR, AMPERSAND_CHAR);
+                            .thenApply(st -> st.replace(SECTION_CHAR, AMPERSAND_CHAR))
+                            .handle((result, ex) -> ex == null ? "" : result)
+                            .join();
 
                     if (isString) {
                         return Tag.preProcessParsed(miniMessage().serialize(LegacyStrings.parsePossibleLegacy(papiParsed)));
@@ -57,12 +58,13 @@ public final class VelocityPlatform {
                 .audiencePlaceholder(Player.class, "player", (player, queue, ctx) -> {
                     final String argument = queue.popOr("You need to provide a placeholder").value();
                     boolean isString = parseString(queue);
-                    PlaceholderAPI api = getAPI(queue);
+                    final PlaceholderAPI api = getAPI(queue);
                     final String papiParsed = api
                             .formatPlaceholders(argument, player.getUniqueId())
                             .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
-                            .join()
-                            .replace(SECTION_CHAR, AMPERSAND_CHAR);
+                            .thenApply(st -> st.replace(SECTION_CHAR, AMPERSAND_CHAR))
+                            .handle((result, ex) -> ex == null ? "" : result)
+                            .join();
 
                     if (isString) {
                         return Tag.preProcessParsed(miniMessage().serialize(LegacyStrings.parsePossibleLegacy(papiParsed)));
@@ -72,13 +74,14 @@ public final class VelocityPlatform {
                 })
                 .relationalPlaceholder(Player.class, "relational", (player, playerToShow, queue, ctx) -> {
                     final String argument = queue.popOr("You need to provide a placeholder").value();
-                    boolean isString = parseString(queue);
-                    PlaceholderAPI api = getAPI(queue);
+                    final boolean isString = parseString(queue);
+                    final PlaceholderAPI api = getAPI(queue);
                     final String papiParsed = api
                             .formatPlaceholders(argument, player.getUniqueId(), playerToShow.getUniqueId())
                             .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
-                            .join()
-                            .replace(SECTION_CHAR, AMPERSAND_CHAR);
+                            .thenApply(st -> st.replace(SECTION_CHAR, AMPERSAND_CHAR))
+                            .handle((result, ex) -> ex == null ? "" : result)
+                            .join();
 
                     if (isString) {
                         return Tag.preProcessParsed(miniMessage().serialize(LegacyStrings.parsePossibleLegacy(papiParsed)));
@@ -90,7 +93,7 @@ public final class VelocityPlatform {
 
     private static boolean parseString(ArgumentQueue queue) {
         //noinspection DataFlowIssue
-        boolean isString = queue.hasNext() && queue.peek().lowerValue().equals("string");
+        final boolean isString = queue.hasNext() && queue.peek().lowerValue().equals("string");
         if (isString) queue.pop();
         return isString;
     }
