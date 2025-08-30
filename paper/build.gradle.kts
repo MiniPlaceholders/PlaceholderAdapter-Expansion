@@ -5,5 +5,5 @@ plugins {
 dependencies {
     compileOnly(libs.paper.api)
     compileOnly(libs.miniplaceholders)
-    compileOnly(libs.placeholderapi)
+    compileOnly(libs.placeholderapi.bukkit)
 }

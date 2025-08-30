@@ -4,9 +4,13 @@ plugins {
 }
 
 dependencies {
+    compileOnly(libs.adventure.api)
     compileOnly(libs.miniplaceholders)
-    implementation(projects.placeholderapiExpansionPaper)
-    implementation(projects.placeholderapiExpansionVelocity)
+    implementation(projects.placeholderAdapterExpansionPaper)
+    implementation(projects.placeholderAdapterExpansionVelocity)
+    implementation(projects.placeholderAdapterExpansionFabric) {
+        isTransitive = false
+    }
 }
 
 allprojects {

@@ -11,17 +11,27 @@ dependencyResolutionManagement {
         maven("https://jitpack.io")
         maven("https://repo.william278.net/releases/")
         maven("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+        maven("https://maven.nucleoid.xyz/") { name = "Nucleoid" }
+    }
+}
+
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+        maven("https://maven.fabricmc.net/")
     }
 }
 
 
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+    id("fabric-loom") version "1.11.7"
 }
 
-arrayOf("paper", "velocity").forEach {
-    include("placeholderapi-expansion-$it")
+arrayOf("paper", "velocity", "fabric").forEach {
+    include("placeholder-adapter-expansion-$it")
 
-    project(":placeholderapi-expansion-$it").projectDir = file(it)
+    project(":placeholder-adapter-expansion-$it").projectDir = file(it)
 }
 

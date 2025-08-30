@@ -14,7 +14,7 @@ import static net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializ
 @SuppressWarnings("unused")
 public final class PaperPlatform {
 
-    public static Expansion provideExpansion() {
+    public static Expansion.Builder provideBuilder() {
         return Expansion.builder("placeholder-adapter")
             .globalPlaceholder("global", (queue, ctx) -> {
                 final String argument = queue.popOr("You need to provide a placeholder").value();
@@ -55,8 +55,7 @@ public final class PaperPlatform {
                 } else {
                     return Tag.selfClosingInserting(LegacyStrings.parsePossibleLegacy(papiParsed));
                 }
-            })
-            .build();
+            });
     }
 
     private static boolean parseString(ArgumentQueue queue) {

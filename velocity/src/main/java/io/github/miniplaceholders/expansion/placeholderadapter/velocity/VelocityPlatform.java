@@ -36,7 +36,7 @@ public final class VelocityPlatform {
         });
     }
     
-    public static Expansion provideExpansion() {
+    public static Expansion.Builder provideBuilder() {
         return Expansion.builder("placeholder-adapter")
                 .globalPlaceholder("global", (queue, ctx) -> {
                     final String argument = queue.popOr("You need to provide a placeholder").value();
@@ -85,8 +85,7 @@ public final class VelocityPlatform {
                     } else {
                         return Tag.selfClosingInserting(LegacyStrings.parsePossibleLegacy(papiParsed));
                     }
-                })
-                .build();
+                });
     }
 
     private static boolean parseString(ArgumentQueue queue) {
