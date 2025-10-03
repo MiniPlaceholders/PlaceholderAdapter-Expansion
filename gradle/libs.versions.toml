@@ -7,7 +7,7 @@ paper = "1.21.8-R0.1-SNAPSHOT"
 
 blossom = "2.1.0"
 shadow = "9.2.2"
-runtask = "3.0.0"
+runtask = "3.0.1"
 
 miniplaceholders = "3.0.1"
 
