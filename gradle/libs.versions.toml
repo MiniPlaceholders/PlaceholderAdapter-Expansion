@@ -11,7 +11,7 @@ runtask = "3.0.1"
 
 miniplaceholders = "3.0.1"
 
-adventure = "4.24.0"
+adventure = "4.25.0"
 adventurefabric = "6.6.0"
 
 fabric-loader = "0.17.2"
