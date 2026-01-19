@@ -46,7 +46,7 @@ public final class VelocityPlatform {
                             .formatPlaceholders(argument, NULL_UUID)
                             .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
                             .thenApply(st -> st.replace(SECTION_CHAR, AMPERSAND_CHAR))
-                            .handle((result, ex) -> ex == null ? "" : result)
+                            .handle((result, ex) -> ex == null ? result : "")
                             .join();
 
                     if (isString) {
@@ -63,7 +63,7 @@ public final class VelocityPlatform {
                             .formatPlaceholders(argument, player.getUniqueId())
                             .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
                             .thenApply(st -> st.replace(SECTION_CHAR, AMPERSAND_CHAR))
-                            .handle((result, ex) -> ex == null ? "" : result)
+                            .handle((result, ex) -> ex == null ? result : "")
                             .join();
 
                     if (isString) {
@@ -80,7 +80,7 @@ public final class VelocityPlatform {
                             .formatPlaceholders(argument, player.getUniqueId(), playerToShow.getUniqueId())
                             .completeOnTimeout(argument, 100, TimeUnit.MILLISECONDS)
                             .thenApply(st -> st.replace(SECTION_CHAR, AMPERSAND_CHAR))
-                            .handle((result, ex) -> ex == null ? "" : result)
+                            .handle((result, ex) -> ex == null ? result : "")
                             .join();
 
                     if (isString) {
