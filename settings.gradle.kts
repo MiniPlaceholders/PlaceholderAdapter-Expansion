@@ -26,7 +26,7 @@ pluginManagement {
 
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
-    id("fabric-loom") version "1.15.1"
+    id("fabric-loom") version "1.15.3"
 }
 
 arrayOf("paper", "velocity", "fabric").forEach {
