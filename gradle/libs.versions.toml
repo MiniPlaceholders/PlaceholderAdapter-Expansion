@@ -6,7 +6,7 @@ velocity = "3.4.0"
 paper = "1.21.8-R0.1-SNAPSHOT"
 
 blossom = "2.2.0"
-shadow = "9.3.1"
+shadow = "9.3.2"
 runtask = "3.0.2"
 
 miniplaceholders = "3.1.0"
