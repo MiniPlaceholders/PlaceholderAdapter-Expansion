@@ -15,7 +15,7 @@ adventure = "5.2.0"
 adventurefabric = "6.8.0"
 
 fabric-loader = "0.19.5"
-fabric-api = "0.133.14+1.21.9"
+fabric-api = "0.160.4+26.3"
 minecraft = "1.21.8"
 
 [libraries]
